@@ -104,8 +104,7 @@ export function VoiceChat() {
   const [endFlag, setEndFlag] = useState(false);
   const [userFlag, setUserFlag] = useState(false);
   const [botFlag, setBotFlag] = useState(false);
-  const mediaRecorderRef = useRef(null);
-    const audioChunksRef = useRef([]);
+ 
   /**
    * cleanup on component unmounted
    * - flush out and cleanup lamejs encoder instance
@@ -115,18 +114,7 @@ export function VoiceChat() {
    * - stop all user's media steaming track and remove it from ref
    */
   useEffect(() => {
-    const enableMicrophone = async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            mediaRecorderRef.current = new MediaRecorder(stream);
-            mediaRecorderRef.current.ondataavailable = event => {
-                audioChunksRef.current.push(event.data);
-            };
-        } catch (error) {
-            console.error('Error accessing microphone:', error);
-        }
-    };
-    enableMicrophone();
+   
     return () => {
         
       if (chunks.current) {
@@ -159,6 +147,7 @@ export function VoiceChat() {
    * start speech recording and start listen for speaking event
    */
   const startRecording = async () => {
+    console.log("onStart");
     await onStartRecording();
   };
 
