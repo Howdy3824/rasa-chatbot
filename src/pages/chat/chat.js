@@ -198,6 +198,7 @@ export function VoiceChat() {
         }
         const recordState = await recorder.current.getState();
         if (recordState === 'inactive' || recordState === 'stopped') {
+            console.log(recordState);
           await recorder.current.startRecording();
         }
         if (recordState === 'paused') {
@@ -696,7 +697,7 @@ export function VoiceChat() {
                 }}
                 className="voice-svg"
                 src="assets/ai-speech2.png"
-                alt="NYC"
+                alt="assets/ai-speech2.png"
               />
               <img
                 style={{
