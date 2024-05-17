@@ -236,7 +236,7 @@ export function VoiceChat() {
         stream.current.getTracks().forEach((track) => track.stop());
       }
       stream.current = await navigator.mediaDevices.getUserMedia({
-        audio: true, video: true
+        audio: true
       });
       if (!listener.current) {
         const { default: hark } = await import('hark');
